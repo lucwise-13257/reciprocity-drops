@@ -5,6 +5,9 @@ Description: >
 
 Resources:
   SlackHandler:
+    DependsOn:
+      - SlackUtilsLayer
+      - Api
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
@@ -18,6 +21,8 @@ Resources:
             Method: post
             Path: /slack/data
             RestApiId: !Ref Api
+      Layers:
+        - !Ref SlackUtilsLayer
   SlackUtilsLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
