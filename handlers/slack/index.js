@@ -6,7 +6,7 @@ fs.readdirSync(testFolder).forEach((file) => {
 });
 
 const { verifyHeaders } = require("/opt/slackutils");
-export const handler = async (event, context) => {
+const handler = async (event, context) => {
   verifyHeaders(event.headers, event.body);
   return {
     statusCode: 200,
@@ -14,4 +14,8 @@ export const handler = async (event, context) => {
       message: "Headers OK",
     }),
   };
+};
+
+module.exports = {
+  handler,
 };
