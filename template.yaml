@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  reciprocity-drops
+
+Resources:
+  SlackHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs20.x
+      CodeUri: handlers/slack
+      Timeout: 3
+      Events:
+        SlackRequest:
+          Type: Api
+          Properties:
+            Method: post
+            Path: /slack/data
+            RestApiId: !Ref Api
+  SlackUtilsLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: slackUtils
+      Description: Utilities for slack related functions
+      ContentUri: layers/slackUtils
+      CompatibleRuntimes:
+        - nodejs20.x
+    Metadata:
+      BuildMethod: makefile
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: Slack gateway
+      StageName: api
