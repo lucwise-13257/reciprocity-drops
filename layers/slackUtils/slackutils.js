@@ -29,6 +29,7 @@ const verifyHeaders = (headers, body) => {
   const basestring = `v0:${timestamp}:${body}`;
   const hmac = crypto.createHmac("sha256", slackSigningSecret);
   const calculatedSignature = `v0=${hmac.update(basestring).digest("hex")}`;
+  console.log(signature, calculatedSignature);
 
   if (signature !== calculatedSignature) {
     throw new Error("Invalid request signature");
