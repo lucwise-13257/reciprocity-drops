@@ -5,7 +5,7 @@ import crypto from "crypto";
  * @param {string} channel - The channel ID to put the message in
  * @param {string} message - The message paylaod
  */
-export const sendMessage = (channel, message) => {};
+const sendMessage = (channel, message) => {};
 
 /**
  * Verifies requests are coming from slack
@@ -14,7 +14,7 @@ export const sendMessage = (channel, message) => {};
  * @param {Object} body
  */
 
-export const verifyHeaders = (headers, body) => {
+const verifyHeaders = (headers, body) => {
   const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
   const timestamp = headers["X-Slack-Request-Timestamp"];
   const signature = headers["X-Slack-Signature"];
@@ -33,4 +33,9 @@ export const verifyHeaders = (headers, body) => {
   if (signature !== calculatedSignature) {
     throw new Error("Invalid request signature");
   }
+};
+
+module.exports = {
+  sendMessage,
+  verifyHeaders,
 };
