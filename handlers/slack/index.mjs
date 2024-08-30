@@ -1,4 +1,4 @@
-import { verifyHeaders } from "/opt/slackUtils";
+import { verifyHeaders } from "/opt/slackUtils.mjs";
 export const handler = async (event, context) => {
   verifyHeaders(event.headers, event.body);
   return {
