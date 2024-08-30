@@ -1,11 +1,11 @@
 const testFolder = "/opt/";
-import fs from "fs";
+const fs = require("fs");
 
 fs.readdirSync(testFolder).forEach((file) => {
   console.log(file);
 });
 
-import { verifyHeaders } from "/opt/slackutils";
+const { verifyHeaders } = require("/opt/slackutils");
 export const handler = async (event, context) => {
   verifyHeaders(event.headers, event.body);
   return {

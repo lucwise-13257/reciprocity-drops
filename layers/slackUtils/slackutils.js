@@ -1,4 +1,4 @@
-import crypto from "crypto";
+const crypto = require("crypto");
 /**
  *  Send messages in specified channels
  *
