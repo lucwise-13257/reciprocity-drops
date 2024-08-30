@@ -26,7 +26,7 @@ Resources:
   SlackUtilsLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: slackUtils
+      LayerName: slackutils
       Description: Utilities for slack related functions
       ContentUri: layers/slackUtils
       CompatibleRuntimes:
