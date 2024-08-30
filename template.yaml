@@ -5,9 +5,6 @@ Description: >
 
 Resources:
   SlackHandler:
-    DependsOn:
-      - SlackUtilsLayer
-      - Api
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
