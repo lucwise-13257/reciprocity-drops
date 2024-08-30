@@ -23,6 +23,9 @@ Resources:
             RestApiId: !Ref Api
       Layers:
         - !Ref SlackUtilsLayer
+      Environment:
+        Variables:
+          SLACK_SIGNING_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
   SlackUtilsLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
