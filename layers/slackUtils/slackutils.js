@@ -16,6 +16,7 @@ const sendMessage = (channel, message) => {};
 
 const verifyHeaders = (headers, body) => {
   const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
+  const rawRequest = new URLSearchParams(body).toString();
   const timestamp = headers["X-Slack-Request-Timestamp"];
   const signature = headers["X-Slack-Signature"];
   const currentTimestamp = Math.floor(Date.now() / 1000);
@@ -26,11 +27,9 @@ const verifyHeaders = (headers, body) => {
     throw new Error("Request timestamp is more than five minutes old");
   }
 
-  const basestring = `v0:${timestamp}:${body}`;
+  const basestring = `v0:${timestamp}:${rawRequest}`;
   const hmac = crypto.createHmac("sha256", slackSigningSecret);
-  hmac.update(basestring);
-  const calculatedSignature = "v0=" + hmac.digest("hex");
-  // const calculatedSignature = `v0=${hmac.update(basestring).digest("hex")}`;
+  const calculatedSignature = `v0=${hmac.update(basestring).digest("hex")}`;
   console.log(signature, calculatedSignature);
 
   if (signature !== calculatedSignature) {
