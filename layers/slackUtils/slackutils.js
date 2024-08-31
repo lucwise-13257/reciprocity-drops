@@ -17,6 +17,7 @@ const sendMessage = (channel, message) => {};
 const verifyHeaders = (headers, body) => {
   const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
   const rawRequest = new URLSearchParams(body).toString();
+  console.log(`REQUEST: ${body}`, `RAW REQUEST:${rawRequest}`);
   const timestamp = headers["X-Slack-Request-Timestamp"];
   const signature = headers["X-Slack-Signature"];
   const currentTimestamp = Math.floor(Date.now() / 1000);
