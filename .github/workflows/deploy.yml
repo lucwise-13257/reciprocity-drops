@@ -30,4 +30,4 @@ jobs:
           SlackSigningSecret: ${{ secrets.SLACK_SIGNING_SECRET }}
         run: |
           sam build
-          sam deploy --stack-name ReciprocityDrops --region ca-central-1 --no-confirm-changeset --capabilities CAPABILITY_IAM --parameter-overrides "SlackSigningSecret=$SlackSigningSecret"
+          sam deploy --stack-name ReciprocityDrops --region ca-central-1 --no-confirm-changeset --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides "SlackSigningSecret=$SlackSigningSecret"
