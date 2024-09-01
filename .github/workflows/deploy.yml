@@ -36,4 +36,4 @@ jobs:
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
         run: |
-          curl -X POST -H 'Content-Type: application/json' $WEBHOOK_URL --data '{"content":"@here Deploy to PROD Complete"}'
+          curl -X POST -H 'Content-Type: application/json' $WEBHOOK_URL --data '{"content":"@here Deploy AWS SAM - ${{ github.event.repository.name }} to PROD Complete"}'
