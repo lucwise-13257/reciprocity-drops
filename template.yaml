@@ -42,6 +42,8 @@ Resources:
           Type: SQS
           Properties:
             Queue: !GetAtt ExportDataQueue.Arn
+      Layers:
+        - !Ref SlackUtilsLayer
 
   ### Lambda Layers
   SlackUtilsLayer:
