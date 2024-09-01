@@ -31,3 +31,9 @@ jobs:
         run: |
           sam build
           sam deploy --stack-name ReciprocityDrops --region ca-central-1 --no-confirm-changeset --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides "SlackSigningSecret=$SlackSigningSecret"
+
+      - shell: bash
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        run: |
+          curl -X POST -H 'Content-Type: application/json' $WEBHOOK_URL --data '{"text":"Deploy to PROD Complete"}'
