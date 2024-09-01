@@ -32,7 +32,7 @@ const verifyHeaders = (headers, body) => {
   const calculatedSignature = `v0=${hmac.update(basestring).digest("hex")}`;
   console.log(signature, calculatedSignature);
 
-  if (signature !== calculatedSignature) {
+  if (signature === calculatedSignature) {
     return "Invalid request signature";
   } else {
     return true;
