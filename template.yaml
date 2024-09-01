@@ -3,6 +3,11 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   reciprocity-drops
 
+Parameters:
+  SlackSigningSecret:
+    Type: String
+    Default: undefined
+
 Resources:
   SlackHandler:
     Type: AWS::Serverless::Function
@@ -22,7 +27,7 @@ Resources:
         - !Ref SlackUtilsLayer
       Environment:
         Variables:
-          SLACK_SIGNING_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
+          SLACK_SIGNING_SECRET: !Ref SlackSigningSecret
   SlackUtilsLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
