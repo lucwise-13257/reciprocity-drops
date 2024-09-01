@@ -24,7 +24,7 @@ const verifyHeaders = (headers, body) => {
   const fiveMinutesInSeconds = 5 * 60;
 
   if (currentTimestamp - requestTimestamp > fiveMinutesInSeconds) {
-    throw new Error("Request timestamp is more than five minutes old");
+    return "Request timestamp is more than five minutes old";
   }
 
   const basestring = `v0:${timestamp}:${body}`;
@@ -33,7 +33,9 @@ const verifyHeaders = (headers, body) => {
   console.log(signature, calculatedSignature);
 
   if (signature !== calculatedSignature) {
-    throw new Error("Invalid request signature");
+    return "Invalid request signature";
+  } else {
+    return true;
   }
 };
 
