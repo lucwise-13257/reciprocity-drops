@@ -6,7 +6,17 @@ const handler = async (event, context) => {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        text: verificationResult,
+        response_type: "in_channel",
+        blocks: [
+          {
+            type: "section",
+            text: {
+              type: "plain_text",
+              text: "There was an error processing your request.",
+              emoji: true,
+            },
+          },
+        ],
       }),
     };
   }
