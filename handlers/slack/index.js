@@ -4,7 +4,7 @@ const handler = async (event, context) => {
   const verificationResult = verifyHeaders(event.headers, event.body);
   if (verificationResult === true) {
     return {
-      statusCode: 400,
+      statusCode: 200,
       body: JSON.stringify({
         response_type: "in_channel",
         blocks: [
