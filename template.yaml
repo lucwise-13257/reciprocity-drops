@@ -30,6 +30,19 @@ Resources:
         Variables:
           SLACK_SIGNING_SECRET: !Ref SlackSigningSecret
 
+  ExportDataHandler:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs20.x
+      CodeUri: handlers/ExportData
+      Timeout: 25
+      Events:
+        ExportDataRequest:
+          Type: SQS
+          Properties:
+            Queue: !Ref ExportDataQueue
+
   ### Lambda Layers
   SlackUtilsLayer:
     Type: AWS::Serverless::LayerVersion
