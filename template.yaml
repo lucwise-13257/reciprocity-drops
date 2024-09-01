@@ -9,6 +9,7 @@ Parameters:
     Default: undefined
 
 Resources:
+  ### Lambda Functions
   SlackHandler:
     Type: AWS::Serverless::Function
     Properties:
@@ -28,6 +29,8 @@ Resources:
       Environment:
         Variables:
           SLACK_SIGNING_SECRET: !Ref SlackSigningSecret
+
+  ### Lambda Layers
   SlackUtilsLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
@@ -38,6 +41,14 @@ Resources:
         - nodejs20.x
     Metadata:
       BuildMethod: makefile
+
+  ### SQS Queues
+  ExportDataQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: ExportDataQueue
+
+  ### APIs
   Api:
     Type: AWS::Serverless::Api
     Properties:
