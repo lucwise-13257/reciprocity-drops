@@ -33,6 +33,9 @@ Resources:
         Variables:
           EXPORTQUEUE_URL: !Ref ExportDataQueue
           SLACK_SIGNING_SECRET: !Ref SlackSigningSecret
+      Policies:
+        - SQSSendMessagePolicy:
+            QueueName: !GetAtt ExportDataQueue.QueueName
 
   ExportDataHandler:
     Type: AWS::Serverless::Function
