@@ -53,7 +53,7 @@ Resources:
         - !Ref SlackUtilsLayer
       Environment:
         Variables:
-          API_TOKEN: !Ref APITOKEN
+          APITOKEN: !Ref APITOKEN
 
   ### Lambda Layers
   SlackUtilsLayer:
