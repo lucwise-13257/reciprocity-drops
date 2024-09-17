@@ -32,6 +32,7 @@ async function uploadFiles(channelId) {
         filename: file,
         title: file,
       });
+      console.log("Uploaded file");
       // console.log(`File uploaded: ${result.file.id}`);
       console.log(result.files);
       fileLinks.push({
