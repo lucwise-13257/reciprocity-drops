@@ -31,6 +31,7 @@ Resources:
         - !Ref SlackUtilsLayer
       Environment:
         Variables:
+          EXPORTQUEUE_URL: !Ref ExportDataQueue
           SLACK_SIGNING_SECRET: !Ref SlackSigningSecret
 
   ExportDataHandler:
@@ -49,7 +50,6 @@ Resources:
         - !Ref SlackUtilsLayer
       Environment:
         Variables:
-          EXPORTQUEUE_URL: !Ref ExportDataQueue
           API_TOKEN: !Ref APITOKEN
 
   ### Lambda Layers
