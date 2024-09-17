@@ -2,7 +2,9 @@ const { WebClient } = require("@slack/web-api");
 const web = new WebClient(process.env.APITOKEN);
 const fs = require("fs");
 const handler = async (event, context) => {
+  console.log("Recieved request.");
   for (const message of event.Records) {
+    console.log("Processing request");
     await processMessageAsync(message);
   }
 };
@@ -11,7 +13,7 @@ async function processMessageAsync(message) {
   try {
     await generateData();
     // Upload the data to the slack API
-    uploadFiles("C06J3H891QV");
+    await uploadFiles("C06J3H891QV");
   } catch (err) {
     console.error(err);
   }
