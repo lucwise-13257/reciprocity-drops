@@ -1,4 +1,7 @@
 const { verifyHeaders } = require("/opt/slackutils");
+const { SendMessageCommand, SQSClient } = require("@aws-sdk/client-sqs");
+
+const exportDataQueue = new SQSClient({ region: "ca-central-1" });
 
 const handler = async (event, context) => {
   const verificationResult = verifyHeaders(event.headers, event.body);
@@ -18,7 +21,11 @@ const handler = async (event, context) => {
     });
   }
   // Send message to SQS Queue
-
+  const DataRequest = new SendMessageCommand({
+    QueueUrl: process.env.EXPORTQUEUE_URL,
+    MessageBody: `Data Dump Request. Timestamp:${Date()}`,
+  });
+  await exportDataQueue.send(DataRequest);
   // Inform user the request was recieved.
   return sendResponse(200, {
     response_type: "in_channel",

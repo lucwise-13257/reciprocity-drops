@@ -1,5 +1,6 @@
 {
   "name": "slackutils",
   "version": "1.0.0",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

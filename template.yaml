@@ -7,6 +7,9 @@ Parameters:
   SlackSigningSecret:
     Type: String
     Default: undefined
+  API_TOKEN:
+    Type: String
+    Default: undefined
 
 Resources:
   ### Lambda Functions
@@ -44,6 +47,10 @@ Resources:
             Queue: !GetAtt ExportDataQueue.Arn
       Layers:
         - !Ref SlackUtilsLayer
+      Environment:
+        Variables:
+          EXPORTQUEUE_URL: !Ref ExportDataQueue
+          API_TOKEN: !Ref API_TOKEN
 
   ### Lambda Layers
   SlackUtilsLayer:
