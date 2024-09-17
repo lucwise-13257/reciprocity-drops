@@ -34,7 +34,7 @@ const handler = async (event, context) => {
         type: "section",
         text: {
           type: "plain_text",
-          text: "Processing request.",
+          text: "Processing request. This may take a moment, please wait.",
           emoji: true,
         },
       },
