@@ -1,5 +1,5 @@
 const { WebClient } = require("@slack/web-api");
-const web = new WebClient(process.env.API_TOKEN);
+const web = new WebClient(process.env.APITOKEN);
 const fs = require("fs");
 const handler = async (event, context) => {
   for (const message of event.Records) {

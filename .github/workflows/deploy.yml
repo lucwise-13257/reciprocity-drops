@@ -28,10 +28,10 @@ jobs:
       - name: Build and deploy
         env:
           SlackSigningSecret: ${{ secrets.SLACK_SIGNING_SECRET }}
-          API_TOKEN: ${{ secrets.API_TOKEN }}
+          APITOKEN: ${{ secrets.API_TOKEN }}
         run: |
           sam build
-          sam deploy --stack-name ReciprocityDrops --region ca-central-1 --no-confirm-changeset --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides "SlackSigningSecret=$SlackSigningSecret" "API_TOKEN=$API_TOKEN"
+          sam deploy --stack-name ReciprocityDrops --region ca-central-1 --no-confirm-changeset --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides "SlackSigningSecret=$SlackSigningSecret" "APITOKEN=$APITOKEN"
 
       - shell: bash
         env:

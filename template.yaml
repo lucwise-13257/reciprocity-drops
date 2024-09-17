@@ -7,7 +7,7 @@ Parameters:
   SlackSigningSecret:
     Type: String
     Default: undefined
-  API_TOKEN:
+  APITOKEN:
     Type: String
     Default: undefined
 
@@ -50,7 +50,7 @@ Resources:
       Environment:
         Variables:
           EXPORTQUEUE_URL: !Ref ExportDataQueue
-          API_TOKEN: !Ref API_TOKEN
+          API_TOKEN: !Ref APITOKEN
 
   ### Lambda Layers
   SlackUtilsLayer:
