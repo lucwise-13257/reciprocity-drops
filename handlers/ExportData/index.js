@@ -27,13 +27,13 @@ async function uploadFiles(channelId) {
     for (const file of files) {
       const filePath = `${csvFolder}/${file}`;
       const result = await web.filesUploadV2({
-        channels: channelId,
+        channel_id: channelId,
         file: fs.createReadStream(filePath),
         filename: file,
         title: file,
       });
       // console.log(`File uploaded: ${result.file.id}`);
-      console.log(result.files[0]);
+      console.log(result.files);
       fileLinks.push({
         title: result.files[0].id,
         title_link: result.files[0].permaLink,
