@@ -10,6 +10,9 @@ Parameters:
   APITOKEN:
     Type: String
     Default: undefined
+  CHANNEL_ID:
+    Type: String
+    Default: undefined
 
 Resources:
   ### Lambda Functions
@@ -54,6 +57,7 @@ Resources:
       Environment:
         Variables:
           APITOKEN: !Ref APITOKEN
+          CHANNEL_ID: !Ref CHANNEL_ID
 
   ### Lambda Layers
   SlackUtilsLayer:

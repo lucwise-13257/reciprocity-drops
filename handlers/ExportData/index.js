@@ -13,7 +13,7 @@ async function processMessageAsync(message) {
   try {
     await generateData();
     // Upload the data to the slack API
-    await uploadFiles("C06J3H891QV");
+    await uploadFiles(process.env.CHANNEL_ID);
   } catch (err) {
     console.error(err);
   }

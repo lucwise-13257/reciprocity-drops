@@ -29,9 +29,15 @@ jobs:
         env:
           SlackSigningSecret: ${{ secrets.SLACK_SIGNING_SECRET }}
           APITOKEN: ${{ secrets.API_TOKEN }}
+          CHANNELID: ${{ secrets.CHANNEL_ID }}
         run: |
           sam build
-          sam deploy --stack-name ReciprocityDrops --region ca-central-1 --no-confirm-changeset --no-fail-on-empty-changeset --capabilities CAPABILITY_IAM --parameter-overrides "SlackSigningSecret=$SlackSigningSecret" "APITOKEN=$APITOKEN"
+          sam deploy --stack-name ReciprocityDrops \ 
+          --region ca-central-1 \
+          --no-confirm-changeset \
+          --no-fail-on-empty-changeset \
+          --capabilities CAPABILITY_IAM \
+          --parameter-overrides "SlackSigningSecret=$SlackSigningSecret" "APITOKEN=$APITOKEN" "CHANNEL_ID=$CHANNELID"
 
       - shell: bash
         env:
