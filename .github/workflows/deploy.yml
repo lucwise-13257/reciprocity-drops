@@ -37,7 +37,7 @@ jobs:
           --no-confirm-changeset \
           --no-fail-on-empty-changeset \
           --capabilities CAPABILITY_IAM \
-          --parameter-overrides "SlackSigningSecret=$SlackSigningSecret" "APITOKEN=$APITOKEN" "CHANNEL_ID=$CHANNELID"
+          --parameter-overrides "SlackSigningSecret=$SlackSigningSecret" "APITOKEN=$APITOKEN" "CHANNELID=$CHANNELID"
 
       - shell: bash
         env:
