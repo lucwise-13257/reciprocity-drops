@@ -2,9 +2,7 @@ const { WebClient } = require("@slack/web-api");
 const web = new WebClient(process.env.APITOKEN);
 const fs = require("fs");
 const handler = async (event, context) => {
-  console.log("Recieved request.");
   for (const message of event.Records) {
-    console.log("Processing request");
     await processMessageAsync(message);
   }
 };
@@ -42,13 +40,6 @@ async function uploadFiles(channelId) {
         title_link: result.files[0].permaLink,
       });
     }
-
-    // Post a single message with all uploaded files
-    // await web.chat.postMessage({
-    //   channel: channelId,
-    //   text: `Files uploaded:`,
-    //   attachments: uploadedFiles,
-    // });
   } catch (e) {
     console.log(e);
   }
